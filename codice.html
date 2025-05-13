@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gianmarco Marino</title>
+  <style>
+    /* ===== VARIABILI E RESET AVANZATO ===== */
+    :root {
+      --primary: #2563eb;
+      --secondary: #f59e0b;
+      --accent: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      --shadow-lg: 0 25px 50px -12px rgba(0,0,0,0.15);
+      --ease: cubic-bezier(0.4,0,0.2,1);
+      --radius: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --dark: #f8fafc;
+        --light: #1e293b;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== TIPOGRAFIA DINAMICA ===== */
+    h1 { 
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      line-height: 1.1;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      margin: 1.5rem auto;
+      border-radius: 2px;
+    }
+
+    /* ===== LAYOUT MODERNO ===== */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 8rem 0;
+    }
+
+    /* ===== NAVIGAZIONE AVANZATA ===== */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(248,250,252,0.95);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      color: var(--dark);
+      border-radius: var(--radius);
+      transition: all 0.3s var(--ease);
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient);
+      z-index: -1;
+      opacity: 0;
+      border-radius: var(--radius);
+      transition: opacity 0.3s var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-links a:hover::before {
+      opacity: 1;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ===== SEZIONE HERO DINAMICA ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 60px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 200px;
+      background: var(--gradient);
+      filter: blur(80px);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      word-wrap: break-word;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: #64748b;
+      margin: 2rem auto 3rem;
+      line-height: 1.8;
+    }
+
+    /* ===== PULSANTI INTERATTIVI ===== */
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: all 0.3s var(--ease);
+      border: 2px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -5px rgba(37,99,235,0.3);
+    }
+
+    .btn-secondary {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ===== SEZIONE COMPETENZE ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .skill-card {
+      background: rgba(255,255,255,0.1);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s var(--ease);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+
+    /* ===== PROGETTI INTERATTIVI ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.4s var(--ease);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 60%, rgba(0,0,0,0.8));
+      z-index: 1;
+    }
+
+    .project-image {
+      height: 350px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .project-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      z-index: 2;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.4s var(--ease);
+    }
+
+    .project-card:hover .project-content {
+      transform: translateY(0);
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    /* ===== FORM CONTATTI AVANZATO ===== */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius);
+      background: transparent;
+      transition: all 0.3s var(--ease);
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    /* ===== MEDIA QUERIES ===== */
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .project-content {
+        transform: none;
+        position: relative;
+        color: var(--dark);
+      }
+
+      .project-card::before {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-image {
+        height: 220px;
+      }
+
+      .contact-wrapper {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      .hero {
+        padding: 100px 0 40px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-content h3 {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Fix sovrapposizione testo */
+    .about-content,
+    .project-content,
+    .contact-info {
+      position: relative;
+      z-index: 2;
+    }
+
+    .skill-card h3,
+    .skill-card p {
+      white-space: normal;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Avanzato -->
+  <header>
+    <nav class="container">
+      <a href="#" class="logo"></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Competenze</a></li>
+        <li><a href="#projects">Progetti</a></li>
+        <li><a href="#contact">Contatti</a></li>
+      </ul>
+      <button class="menu-toggle">☰</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Innovazione Tecnologica in Meccatronica</h1>
+        <p>Progettazione integrata di sistemi intelligenti combinando meccanica di precisione, elettronica avanzata e software innovativo</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">Esplora Progetti</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Competenze -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>Competenze Specialistiche</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+        <div class="skill-card">
+          <div class="skill-icon">🔌</div>
+          <h3>Elettronica Embedded</h3>
+          <p>Arduino, Esp32, PCB design</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <h3>Robotica</h3>
+          <p>Automazione, Sperimentazione, Creazione </p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">💻</div>
+          <h3>Sviluppo Software</h3>
+          <p>ArduinoIDE, C++ </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Progetti -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Progetti </h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-image" style="background-image: url('robot-arm.jpg')"></div>
+          <div class="project-content">
+            <h3>Rover a due ruote</h3>
+            <p>Controllo stabile e preciso, prototipo creato esclusivamente con materiali di riciclo</p>
+            <a href="#" class="btn btn-primary">Dettagli Tecnici</a>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Contatti -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Collaborazione Professionale</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Contatti Diretti</h3>
+          <p>📧 marigiam026@gmail.com</p>
+       
+          <div class="social-icons">
+           
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" class="form-input" placeholder="Nome completo" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Indirizzo email" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-input" rows="5" placeholder="Il tuo messaggio..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Invia Richiesta</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
