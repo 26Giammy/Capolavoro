@@ -221,38 +221,50 @@
     /* ===== SEZIONE COMPETENZE ===== */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* più spazio tra le card */
+      gap: 2rem; /* Maggiore spazio tra le card */
       margin-top: 3rem;
     }
 
     .skill-card {
-      background: rgba(255,255,255,0.1);
-      padding: 1.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
       border-radius: var(--radius);
       text-align: center;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s var(--ease);
-      min-height: 180px;
+      min-height: 200px; /* Altezza minima uniforme per tutte le card */
       display: flex;
       flex-direction: column;
       justify-content: center;
+      text-align: center; /* Centrato */
     }
 
     .skill-card:hover {
       transform: translateY(-5px);
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .skill-icon {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       margin: 0 auto 1rem;
       background: var(--gradient);
       border-radius: 50%;
       display: grid;
       place-items: center;
+      font-size: 2.5rem; /* Aumentato per migliorare la visibilità */
+    }
+
+    .skill-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card p {
+      font-size: 1rem;
+      color: #64748b;
     }
 
     /* ===== PROGETTI INTERATTIVI ===== */
@@ -424,21 +436,13 @@
       z-index: 2;
     }
 
-    .skill-card h3,
-    .skill-card p {
-      white-space: normal;
-      word-break: break-word;
-    }
   </style>
 </head>
 <body>
-
-  <!-- Header Avanzato -->
   <header>
-    <nav class="container">
-      <a href="#" class="logo"></a>
+    <nav>
+      <div class="logo">Gianmarco Marino</div>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
         <li><a href="#about">Competenze</a></li>
         <li><a href="#projects">Progetti</a></li>
         <li><a href="#contact">Contatti</a></li>
@@ -447,25 +451,20 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>Innovazione Tecnologica in Meccatronica</h1>
-        <p>Progettazione integrata di sistemi intelligenti combinando meccanica di precisione, elettronica avanzata e software innovativo</p>
-        <div class="cta-buttons">
-          <a href="#projects" class="btn btn-primary">Esplora Progetti</a>
-        </div>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Benvenuto nel mio mondo digitale</h1>
+      <p>Designer di soluzioni tecnologiche innovative in grado di semplificare e migliorare il mondo in cui viviamo. Scopri chi sono e cosa posso fare.</p>
+      <div class="cta-buttons">
+        <a href="#about" class="btn btn-primary">Scopri di più</a>
       </div>
     </div>
   </section>
 
-  <!-- Sezione Competenze -->
   <section id="about" class="section">
     <div class="container">
       <h2>Competenze Specialistiche</h2>
       <div class="skills-grid">
-        <div class="skill-card">
         <div class="skill-card">
           <div class="skill-icon">🔌</div>
           <h3>Elettronica Embedded</h3>
@@ -474,62 +473,18 @@
         <div class="skill-card">
           <div class="skill-icon">🤖</div>
           <h3>Robotica</h3>
-          <p>Automazione, Sperimentazione, Creazione </p>
+          <p>Automazione, Sperimentazione, Creazione</p>
         </div>
         <div class="skill-card">
           <div class="skill-icon">💻</div>
           <h3>Sviluppo Software</h3>
-          <p>ArduinoIDE, C++ </p>
+          <p>ArduinoIDE, C++</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Sezione Progetti -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2>Progetti </h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <div class="project-image" style="background-image: url('robot-arm.jpg')"></div>
-          <div class="project-content">
-            <h3>Rover a due ruote</h3>
-            <p>Controllo stabile e preciso, prototipo creato esclusivamente con materiali di riciclo</p>
-            <a href="#" class="btn btn-primary">Dettagli Tecnici</a>
-          </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sezione Contatti -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2>Collaborazione Professionale</h2>
-      <div class="contact-wrapper">
-        <div class="contact-info">
-          <h3>Contatti Diretti</h3>
-          <p>📧 marigiam026@gmail.com</p>
-       
-          <div class="social-icons">
-           
-            <a href="#">Instagram</a>
-          </div>
-        </div>
-        <form class="contact-form">
-          <div class="form-group">
-            <input type="text" class="form-input" placeholder="Nome completo" required>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-input" placeholder="Indirizzo email" required>
-          </div>
-          <div class="form-group">
-            <textarea class="form-input" rows="5" placeholder="Il tuo messaggio..." required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Invia Richiesta</button>
-        </form>
-      </div>
-    </div>
-  </section>
+  
+  <!-- Qui puoi aggiungere altre sezioni come Progetti e Contatti -->
 
 </body>
 </html>
