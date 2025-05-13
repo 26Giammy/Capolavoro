@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gianmarco Marino</title>
   <style>
-    /* ===== VARIABILI E RESET AVANZATO ===== */
     :root {
       --primary: #2563eb;
       --secondary: #f59e0b;
@@ -45,7 +44,6 @@
       overflow-x: hidden;
     }
 
-    /* ===== TIPOGRAFIA DINAMICA ===== */
     h1 { 
       font-size: clamp(2.5rem, 8vw, 4rem);
       line-height: 1.1;
@@ -71,7 +69,6 @@
       border-radius: 2px;
     }
 
-    /* ===== LAYOUT MODERNO ===== */
     .container {
       max-width: 1440px;
       margin: 0 auto;
@@ -82,7 +79,6 @@
       padding: 8rem 0;
     }
 
-    /* ===== NAVIGAZIONE AVANZATA ===== */
     header {
       position: fixed;
       width: 100%;
@@ -152,7 +148,6 @@
       cursor: pointer;
     }
 
-    /* ===== SEZIONE HERO DINAMICA ===== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -190,7 +185,6 @@
       line-height: 1.8;
     }
 
-    /* ===== PULSANTI INTERATTIVI ===== */
     .btn {
       padding: 1rem 2rem;
       border-radius: var(--radius);
@@ -218,56 +212,42 @@
       color: var(--primary);
     }
 
-    /* ===== SEZIONE COMPETENZE ===== */
+    /* MODIFICA APPLICATA QUI ↓↓↓ */
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* più spazio tra le card */
-      gap: 2rem; /* Maggiore spazio tra le card */
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
       margin-top: 3rem;
     }
 
     .skill-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      padding: 1.2rem;
       border-radius: var(--radius);
       text-align: center;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.1);
       transition: all 0.3s var(--ease);
-      min-height: 200px; /* Altezza minima uniforme per tutte le card */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center; /* Centrato */
+      flex: 1 1 30%;
+      min-width: 200px;
     }
 
     .skill-card:hover {
       transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255,255,255,0.2);
     }
 
     .skill-icon {
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       margin: 0 auto 1rem;
       background: var(--gradient);
       border-radius: 50%;
       display: grid;
       place-items: center;
-      font-size: 2.5rem; /* Aumentato per migliorare la visibilità */
     }
 
-    .skill-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .skill-card p {
-      font-size: 1rem;
-      color: #64748b;
-    }
-
-    /* ===== PROGETTI INTERATTIVI ===== */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -316,7 +296,6 @@
       transform: scale(1.05);
     }
 
-    /* ===== FORM CONTATTI AVANZATO ===== */
     .contact-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -347,88 +326,18 @@
       box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
     }
 
-    /* ===== MEDIA QUERIES ===== */
     @media (max-width: 1024px) {
-      .nav-links {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .contact-wrapper {
-        grid-template-columns: 1fr;
-      }
-
-      .project-content {
-        transform: none;
-        position: relative;
-        color: var(--dark);
-      }
-
-      .project-card::before {
-        display: none;
-      }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .project-content { transform: none; position: relative; color: var(--dark); }
+      .project-card::before { display: none; }
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-      }
-
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .project-image {
-        height: 220px;
-      }
-
-      .contact-wrapper {
-        padding: 1.5rem;
-      }
+      .skills-grid { flex-direction: column; }
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 0 1rem;
-      }
-
-      .hero {
-        padding: 100px 0 40px;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .project-content h3 {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* Fix sovrapposizione testo */
     .about-content,
     .project-content,
     .contact-info {
@@ -436,13 +345,20 @@
       z-index: 2;
     }
 
+    .skill-card h3,
+    .skill-card p {
+      white-space: normal;
+      word-break: break-word;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <nav>
-      <div class="logo">Gianmarco Marino</div>
+    <nav class="container">
+      <a href="#" class="logo"></a>
       <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
         <li><a href="#about">Competenze</a></li>
         <li><a href="#projects">Progetti</a></li>
         <li><a href="#contact">Contatti</a></li>
@@ -451,12 +367,14 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Benvenuto nel mio mondo digitale</h1>
-      <p>Designer di soluzioni tecnologiche innovative in grado di semplificare e migliorare il mondo in cui viviamo. Scopri chi sono e cosa posso fare.</p>
-      <div class="cta-buttons">
-        <a href="#about" class="btn btn-primary">Scopri di più</a>
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Innovazione Tecnologica in Meccatronica</h1>
+        <p>Progettazione integrata di sistemi intelligenti combinando meccanica di precisione, elettronica avanzata e software innovativo</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">Esplora Progetti</a>
+        </div>
       </div>
     </div>
   </section>
@@ -483,8 +401,49 @@
       </div>
     </div>
   </section>
-  
-  <!-- Qui puoi aggiungere altre sezioni come Progetti e Contatti -->
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Progetti </h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-image" style="background-image: url('robot-arm.jpg')"></div>
+          <div class="project-content">
+            <h3>Rover a due ruote</h3>
+            <p>Controllo stabile e preciso, prototipo creato esclusivamente con materiali di riciclo</p>
+            <a href="#" class="btn btn-primary">Dettagli Tecnici</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Collaborazione</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h3>Contatti Diretti</h3>
+          <p>📧 marigiam026@gmail.com</p>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/vibenow_official?igsh=NjRxZXB3cWIwYm1n&utm_source=qr">Instagram</a>
+          </div>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" class="form-input" placeholder="Nome completo" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-input" placeholder="Indirizzo email" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-input" rows="5" placeholder="Il tuo messaggio..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Invia Richiesta</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
 </body>
 </html>
